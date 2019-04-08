@@ -29,28 +29,34 @@ CmdResult = namedtuple('CmdResult',
 TIMEOUT = 1200
 NODES_FILE = os.path.expanduser("~/code/jepsen/nodes")
 TESTS = [
-    "single-row-inserts",
-    "single-key-acid",
-    "multi-key-acid",
-    "counter-inc",
-    "counter-inc-dec",
     "bank",
+    "bank-multitable", 
+    "counter",
+    "long-fork",
+    "multi-key-acid",
+    "set", 
+    "set-index",
+    "single-key-acid"
 ]
+
+# Not doing clock skew tests in LXC.
+#   "clock-skew"
+
 NEMESES = [
     "none",
-    "start-stop-tserver",
-    "start-kill-tserver",
-    "start-stop-master",
-    "start-kill-master",
-    "start-stop-node",
-    "start-kill-node",
-    "partition-random-halves",
-    "partition-random-node",
-    "partition-majorities-ring",
-    "small-skew",
-    "medium-skew",
-    "large-skew",
-    "xlarge-skew",
+    "kill",
+    "kill-master",
+    "kill-tserver",
+    "partition",
+    "partition-half",
+    "partition-one",
+    "partition-ring",
+    "pause",
+    "pause-master",
+    "pause-tserver",
+    "stop",
+    "stop-master",
+    "stop-tserver"
 ]
 SCRIPT_DIR = os.path.abspath(os.path.dirname(sys.argv[0]))
 STORE_DIR = os.path.join(SCRIPT_DIR, "store")
