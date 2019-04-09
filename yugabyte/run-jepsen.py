@@ -103,7 +103,7 @@ while True:
     for test in TESTS:
         for nemesis in NEMESES:
             result = run_cmd(
-                "lein run test --nodes-file {NODES_FILE} --test {test} --nemesis {nemesis}".format(**locals()),
+                "lein run test --nodes-file {NODES_FILE} --workload {test} --nemesis {nemesis}".format(**locals()),
                 timeout=TIMEOUT, exit_on_error=False
             )
             if result.timed_out:
