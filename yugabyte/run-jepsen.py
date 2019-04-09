@@ -103,7 +103,7 @@ while True:
     for test in TESTS:
         for nemesis in NEMESES:
             result = run_cmd(
-                "lein run test --nodes-file {NODES_FILE} --workload {test} --nemesis {nemesis}"
+                "lein run test --nodes-file {NODES_FILE} --workload {test} --nemesis {nemesis} "
                 "--os debian "
                 "--url https://downloads.yugabyte.com/yugabyte-ce-1.2.3.0-linux.tar.gz".format(**locals()),
                 timeout=TIMEOUT, exit_on_error=False
