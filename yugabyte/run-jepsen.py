@@ -103,16 +103,18 @@ while True:
     for test in TESTS:
         for nemesis in NEMESES:
             result = run_cmd(
-                "lein run test --nodes-file {NODES_FILE} --workload {test} --nemesis {nemesis}".format(**locals()),
+                "lein run test --nodes-file {NODES_FILE} --workload {test} --nemesis {nemesis}"
+                "--os debian "
+                "--url https://downloads.yugabyte.com/yugabyte-ce-1.2.3.0-linux.tar.gz".format(**locals()),
                 timeout=TIMEOUT, exit_on_error=False
             )
             if result.timed_out:
                 for root, dirs, files in os.walk(STORE_DIR):
-                    for file in files:
-                        if file == "jepsen.log":
+                    for file_name in files:
+                        if file_name == "jepsen.log":
                             msg = "Test run timed out!"
                             print "\n" + msg
-                            with open(os.path.join(root, file), "a") as f:
+                            with open(os.path.join(root, file_name), "a") as f:
                                 f.write(msg)
 
             run_cmd(SORT_RESULTS_SH)
